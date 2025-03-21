@@ -1,0 +1,32 @@
+
+
+<div class="shadow-lg">
+    <div class="card-header border-bottom">
+        <h2 class="Font-Family ms-3 pt-3 pb-2">Add Item</h2>
+    </div>
+    <div class="card-body p-3">
+        <div class="row">
+            <div class="col-4">
+                <span class="feild-Text Font-Family">Item Name</span>
+                <input nz-input type="text" class="formField"/>
+            </div>
+            <div class="col-4">
+                <span class="feild-Text Font-Family">Item Rate</span>
+                <input nz-input type="text" class="formField"/>
+            </div>
+            <div class="col-4">
+                <span class="feild-Text Font-Family">Date</span>
+                <nz-date-picker formControlName="date" nzSuffixIcon="false" nzFormat="dd/MM/yyyy" nzPlaceHolder=" " autocomplete="off"></nz-date-picker>
+            </div>
+        </div>
+    </div>
+</div>
+<nz-footer class="sticky-footer ant-layout-footer">
+    <div class="footer-content">
+        <nz-space class="ant-space ant-space-horizontal">
+            <div class="ant-space-item" style="margin-right: 8px;">
+                <button nz-button="" nztype="primary" class="ant-btn ant-btn-primary"><span>Save</span></button>
+            </div>
+        </nz-space>
+    </div>
+</nz-footer>

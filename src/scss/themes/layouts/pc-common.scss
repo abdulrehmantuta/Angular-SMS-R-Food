@@ -1,0 +1,38 @@
+body {
+  background-color: $white;
+}
+
+.pc-container {
+  $temp: $header-height + 53;
+  position: relative;
+  top: $header-height;
+  margin-left: $sidebar-width;
+  min-height: calc(100vh - #{$temp});
+  background: #fff;
+
+  .coded-content {
+    padding: 16px 16px 0px 16px;
+    @include media-breakpoint-down(xl) {
+      &.container {
+        max-width: 100%;
+      }
+    }
+    @include media-breakpoint-down(md) {
+      padding: 0px;
+
+    }
+  }
+
+  .page-header + .row {
+    padding-top: 24px;
+  }
+
+  .page-header + .coded-content {
+    padding-top: calc(30px + 55px);
+  }
+
+  @media (max-width: 1024px) {
+    margin-left: 0px;
+    margin-right: 0px;
+  }
+}

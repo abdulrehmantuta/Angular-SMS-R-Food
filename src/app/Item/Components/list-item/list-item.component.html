@@ -1,0 +1,20 @@
+
+
+<div class="Grid-Info-section">
+    <nz-table #smallTable nzSize="small" [nzData]="data" [nzShowPagination]="false">
+        <thead>
+          <tr>
+            <th class="sub-text-th">Item Name</th>
+            <th class="sub-text-th">Item Rate</th>
+            <th class="sub-text-th">Date</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let data of smallTable.data">
+            <td class="sub-text-th" style="color: rgba(25,135,84)">{{ data.itemName }}</td>
+            <td class="Font-Family">{{ data.itemRate }}</td>
+            <td class="Font-Family">{{ data.data }}</td>
+          </tr>
+        </tbody>
+    </nz-table>
+</div>

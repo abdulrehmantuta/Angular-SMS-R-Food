@@ -1,0 +1,23 @@
+<li *ngIf="item.url && !item.external" [ngClass]="item.classes" [routerLinkActive]="['active']">
+  <a [target]="item.target ? '_blank' : '_self'" [routerLink]="[item.url]" (click)="closeOtherMenu($event)">
+    <!-- Check if item.icon exists and display the icon -->
+    <span *ngIf="item.icon" class="coded-micon">
+      <i antIcon [type]="item.icon" theme="outline"></i>
+    </span>
+    <!-- Display the title if item.icon exists, else display the title without icon -->
+    <span *ngIf="item.icon; else noIcon" class="coded-mtext">{{ item.title }}</span>
+    <ng-template #noIcon>{{ item.title }}</ng-template>
+  </a>
+</li>
+
+<li *ngIf="item.url && item.external" [ngClass]="item.classes">
+  <a [target]="item.target ? '_blank' : '_self'" [href]="item.url">
+    <!-- Check if item.icon exists and display the icon -->
+    <span *ngIf="item.icon" class="coded-micon">
+      <i antIcon [type]="item.icon" theme="outline"></i>
+    </span>
+    <!-- Display the title if item.icon exists, else display the title without icon -->
+    <span *ngIf="item.icon; else noIconExternal" class="coded-mtext">{{ item.title }}</span>
+    <ng-template #noIconExternal>{{ item.title }}</ng-template>
+  </a>
+</li>

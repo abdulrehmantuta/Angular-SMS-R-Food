@@ -1,0 +1,110 @@
+.Grid-Info-section {
+    margin-top: 10px;
+    width: 100%;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-content .ant-table-thead .ant-table-row th{
+    background: #e2e7f0;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-content .ant-table-tbody .ant-table-row {
+    background: #e6f6ff;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-content .ant-table-tbody .ant-table-row td{
+    border-top: 1px solid #f0f0f0;
+    background: #fff;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-thead>tr>th:not(:last-child):not(.ant-table-selection-column):not(.ant-table-row-expand-icon-cell):not([colspan])::before {
+    background-color: #0000000f !important;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-container table > thead > tr:first-child th:first-child {
+    border-top-left-radius: 2px;
+    border-bottom-left-radius: 2px;
+   }
+  .Grid-Info-section ::ng-deep .ant-table-container table > thead > tr:first-child th:last-child {
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+   }
+  .text-ellipsis {
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    display: inline-block;
+    max-width: 100%;
+  }
+  .Grid-Info-section ::ng-deep .ant-table-footer {
+    background: #f1f4fa;
+    border-left: 1px solid #cccccc;
+    border-right: 1px solid #cccccc;
+    border-bottom: 1px solid #cccccc;
+    padding: 0;
+    margin: 0;
+  }
+  ::ng-deep .ant-select-tree .ant-select-tree-treenode:first-child {
+  margin-top: 0px;
+  margin-bottom: 3px;
+  }
+  ::ng-deep .ant-tree-select .ant-select-selector {
+  max-height: 100px;
+  overflow-y: hidden;
+  overflow-x: hidden;
+  }
+  ::ng-deep .ant-select-tree-node-content-wrapper {
+  background: none !important;
+  }
+  ::ng-deep .ant-select-tree .ant-select-tree-treenode {
+    display: flex;
+    align-items: center;
+    background-color: white;
+    transition: background-color 0.3s ease;
+    margin: 0px;
+    padding: 2px !important;
+  }
+  ::ng-deep .ant-select-tree-switcher {
+    width: 0 !important;
+  }
+  .sub-text-th {
+    font-size: 14px;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+  }
+  .Grid-Info-section ::ng-deep .ant-empty-normal {
+  margin: 0 !important;
+  }
+  .Grid-Info-section ::ng-deep .ant-table.ant-table-small .ant-table-expanded-row-fixed {
+  margin: 0 !important;
+  }
+  .Grid-Info-section ::ng-deep .ant-table .ant-table-expanded-row-fixed {
+  padding: 0 !important;
+  }
+  .Dizable {
+  background-color: #e2e7f0;
+  cursor: no-drop;
+  color: #202227 !important;
+  &::placeholder {
+    color: #8f9ba8 !important;
+    font-size: 12px !important;
+  }
+  &:hover {
+    background-color: #e2e7f0;
+    border: 1px solid #ccc;
+  }
+  }
+  .Grid-Info-section ::ng-deep .ant-select-disabled.ant-select:not(.ant-select-customize-input) .ant-select-selector {
+  background: #e2e7f0 !important;
+  color: #202227 !important;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+  }
+  .card .card-head ::ng-deep .ant-select-multiple .ant-select-selection-item-remove {
+  display: flex;
+  align-items: center;
+  }
+  .fixed-summary-footer .ant-table-row th{
+  background: #f1f4fa;
+  border-top: 1px solid #c7d0d9;
+  }
+  .Grid-Info-section nz-table tbody tr i {
+  font-size: 24px;
+  color: #004fd6;
+  padding: 4px;
+  &:hover {
+    color: #002f77;
+   }
+  }

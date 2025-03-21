@@ -1,0 +1,59 @@
+.wrap-info {
+    display: flex;
+    justify-content: center;
+}
+.wrap-info h2{
+    color: #333;
+    font-size: 20px;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+.price-wrapper {
+    display: flex;
+    justify-content: center;
+    color: #fff;
+    border-radius: 10px;
+}
+.price-wrapper span{
+    background-color: red;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+    border-radius: 10px;
+    padding: 3px 20px 3px 20px;
+}
+.cart-item-counter {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+.cart-item-counter .plus {
+    color: #ffff;
+    background-color: #fcc817;
+    padding: 10px;
+    border-radius: 10px 0px 0px 10px;
+}
+.cart-item-counter .minus {
+    color: #ffff;
+    background-color: #fcc817;
+    padding: 10px;
+    border-radius: 0px 10px 10px 0px;
+}
+.add-to-card-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.add-to-card-button span {
+    border-radius: 100rem;
+    padding: .3rem .5rem !important;
+    background: #fcc817;
+    border-color: #fcc817;
+    color: #fff;
+    width: 70%;
+    text-align: center;
+    margin-top: 15px;
+    font-size: 14px;
+    font-weight: 700;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}

@@ -1,0 +1,22 @@
+<li data-username="mantis dashboard" class="nav-item coded-hasmenu" [routerLinkActive]="['active']">
+  <a [routerLinkActive]="['active']" (click)="navCollapse($event)">
+    <!-- Check if item.icon exists and conditionally display the icon -->
+    <span *ngIf="item.icon" class="coded-micon">
+      <i antIcon [type]="item.icon" theme="outline"></i>
+    </span>
+    <span class="coded-mtext">
+      {{ item.title }}
+    </span>
+  </a>
+  <ul class="coded-submenu" [routerLinkActive]="['active']" [ngClass]="item.classes">
+    <!-- Loop through item.children and display items based on type -->
+    <ng-container *ngFor="let child of item.children">
+      <ng-container *ngIf="child.type === 'item'">
+        <app-nav-item [item]="child"></app-nav-item>
+      </ng-container>
+      <ng-container *ngIf="child.type === 'collapse'">
+        <app-nav-collapse [item]="child"></app-nav-collapse>
+      </ng-container>
+    </ng-container>
+  </ul>
+</li>

@@ -1,0 +1,18 @@
+.feild-Text {
+    font-weight: 600;
+    font-size: 14px;
+}
+.sticky-footer {
+    position: sticky;
+    bottom: 0;
+    background-color: #fff;
+    padding: 10px 0;
+    box-shadow: 0 -6px 10px #0000001a;
+    z-index: 10;
+    width: 100%;
+    position: fixed;
+}
+.card-header h2{
+    font-weight: 700;
+    font-size: 16px;
+}

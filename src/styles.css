@@ -1,0 +1,75 @@
+/* You can add global styles to this file, and also import other style files */
+.famly-inn {
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+.sub-text {
+  margin-top: 5px;
+  font-weight: 700;
+  color: #202227;
+  font-size: 12px;
+  position: relative;
+  letter-spacing: 0.2px;
+  white-space: normal;
+  color: #252227;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+.formField {
+    width: 100%;
+    height: 32px;
+    border: 1px solid #ccc;
+    transition: border 0.3s, box-shadow 0.3s;
+    font-size: 14px;
+    border-radius: 4px;
+    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,
+    Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,
+    sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+}
+.formField:hover {
+    border: 1px solid blue;
+}
+.formField:focus {
+    border-color: #0763fb;
+    box-shadow: 0 0 3px #03b2cb;
+    outline: none;
+    outline-offset: 0;
+}
+.ant-typography-Modal {
+    margin: 0;
+    font-weight: 700;
+    font-size: 24px;
+    color: #202227;
+    overflow-wrap: break-word;
+}
+.ant-typography-crad-Header {
+  font-weight: 600;
+  font-size: 16px;
+  color: #202227;
+  overflow-wrap: break-word;
+}
+.ant-typography-heading-bold {
+  margin: 0;
+  font-weight: 700;
+  font-size: 16px;
+  color: #202227;
+  overflow-wrap: break-word;
+}
+.ModalHeaderJobName {
+  font-size: 12px;
+  line-height: 12px;
+  height: 16px;
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+}
+nz-select {
+  width: 100%;
+}
+nz-date-picker {
+  width: 100%;
+  border-radius: 4px;
+}
+.Font-Family {
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC,Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial,sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol !important;
+}

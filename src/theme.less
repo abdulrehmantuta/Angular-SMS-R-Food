@@ -1,0 +1,169 @@
+// Custom Theming for NG-ZORRO
+// For more information: https://ng.ant.design/docs/customize-theme/en
+@import "../node_modules/ng-zorro-antd/ng-zorro-antd.less";
+
+// Override less variables to here
+// View all variables: https://github.com/NG-ZORRO/ng-zorro-antd/blob/master/components/style/themes/default.less
+
+@primary-color: #1890ff;
+@border-radius-base: 4px; // Custom border radius
+
+
+.ant-form-item-label>label::after {
+  content: ':';
+  position: relative;
+  top: -0.5px;
+  margin: 0 8px 0 2px;
+  display: none;
+}
+
+
+.ant-card-actions {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+  background: #fff;
+  border-top: 1px solid #f0f0f0;
+  margin-right: 15px;
+  display: grid;
+  justify-content: end;
+}
+
+.ant-dropdown-menu {
+  position: relative;
+  // height: 200px;
+  overflow-x: hidden;
+  margin: 0;
+  padding: 4px 0;
+  text-align: left;
+  list-style-type: none;
+  background-color: #fff;
+  background-clip: padding-box;
+  border-radius: 2px;
+  outline: none;
+  box-shadow: 0 3px 6px -4px rgba(0, 0, 0, 0.12), 0 6px 16px 0 rgba(0, 0, 0, 0.08), 0 9px 28px 8px rgba(0, 0, 0, 0.05);
+}
+
+
+.ant-select-clear {
+  position: absolute;
+  top: 50%;
+  right: 11px;
+  z-index: 1;
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  margin-top: -6px;
+  color: rgba(0, 0, 0, 0.25);
+  font-size: 12px;
+  font-style: normal;
+  line-height: 1;
+  text-align: center;
+  text-transform: none;
+  background: #fff;
+  cursor: pointer;
+  opacity: 0;
+  transition: color 0.3s ease, opacity 0.15s ease;
+  text-rendering: auto;
+  display: flex;
+}
+
+
+.ant-form-item {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  color: rgba(0, 0, 0, 0.85);
+  font-size: 14px;
+  font-variant: tabular-nums;
+  font-feature-settings: 'tnum';
+  margin-bottom: 15px;
+  vertical-align: top;
+  transition: margin-bottom 0.3s 0.017s linear;
+}
+
+
+.ant-form-vertical .ant-form-item-label,
+.ant-col-24.ant-form-item-label,
+.ant-col-xl-24.ant-form-item-label {
+  padding: 0 0 0px;
+  white-space: initial;
+  text-align: left;
+}
+
+
+.ant-checkbox-inner {
+  background-color: #fff;
+  border: 1px solid #8c8686;
+}
+
+
+.ant-checkbox-checked .ant-checkbox-inner {
+  background-color: #095dab;
+  border-color: #0084ff;
+}
+
+.ant-checkbox-indeterminate .ant-checkbox-inner::after {
+  top: 50%;
+  left: 50%;
+  width: 8px;
+  height: 8px;
+  background-color: #095dab;
+  border: 0;
+  transform: translate(-50%, -50%) scale(1);
+  opacity: 1;
+  content: ' ';
+}
+
+
+.ant-table-thead>tr>th {
+  background: #eaeef7;
+
+}
+
+
+.ant-table-tbody>tr:hover {
+  background: #f1f4fa !important;
+
+}
+
+
+.ant-notification-notice-close-x {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f1f4fa;
+  padding: 4px;
+  border-radius: 3px;
+}
+
+
+.cdk-overlay-container {
+  position: fixed;
+  z-index: 10000;
+}
+.ant-card-body {
+  padding: 16px;
+}
+.ant-card-head {
+  padding: 0 16px;
+}
+
+// .anticon{
+//   top: 10px;
+// }
+
+
+.ant-select-multiple .ant-select-selection-item {
+  // position: relative
+  display: flex;
+  align-items: center
+  ;
+}
+.anticon svg {
+  display: inline-block;
+  // margin-top: 8px;
+  vertical-align: middle;
+}
+
+

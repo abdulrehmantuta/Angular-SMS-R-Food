@@ -1,0 +1,19 @@
+
+.main-panel {
+    background: #f2f3f8;
+}
+.card-warning {
+    background: #fbad4c;
+}
+.card-success {
+    background: #59d05d;
+}
+.card-danger {
+    background: #ff646d;
+}
+.card-primary {
+    background: #1D62F0;
+}
+.card-category{
+    color: #fff;
+}

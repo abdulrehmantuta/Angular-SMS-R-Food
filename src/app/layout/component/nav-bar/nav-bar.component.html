@@ -1,0 +1,135 @@
+<header class="pc-header shadow-lg">
+  <div class="header-wrapper">
+    <div class="pc-mob-drp">
+      <app-nav-left 
+        [navCollapsed]="navCollapsed" 
+        (NavCollapse)="navCollapse()" 
+        (NavCollapsedMob)="navCollapseMob()"
+      ></app-nav-left>
+    </div>
+    <div>
+      <app-nav-right></app-nav-right>
+    </div>
+    <div *ngIf="shooping === true" data-bs-toggle="offcanvas" data-bs-target="#offcanvasRight" aria-controls="offcanvasRight" >
+      <span style="color: #ffd400;margin-top: 15px;font-size: 24px;" nz-icon nzType="shopping-cart" nzTheme="outline"></span>
+      <span style="top: -5px;position: relative;right: 6px;background: #fcc817;outline: 1px solid currentColor;border-radius: 50%;color: #000;border: 1px solid #000;padding: 1px 5px 1px 5px;">4</span>
+    </div>
+  </div>
+</header>
+<div class="offcanvas offcanvas-end custom-offcanvas" tabindex="-1" id="offcanvasRight">
+  <!-- Header -->
+  <div class="offcanvas-header">
+    <h5 class="offcanvas-title">Your Cart</h5>
+    <button type="button" class="btn-close" data-bs-dismiss="offcanvas"></button>
+  </div>
+
+  <!-- Scrollable Content -->
+  <div class="offcanvas-body">
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+    <div class="cart-item">
+      <div class="cart-card">
+        <img src="/assets/My Imges/1740727927-WhatsApp202025-02-282012.png" alt="Item">
+        <div class="wrap-info">
+          <h6>Ramadan Feast</h6>
+          <span class="normal-price">Rs. 1499</span>
+        </div>
+        <div class="counter">
+          <span class="plus" style="border-radius: 10px 0px 0px 10px;">-</span>
+          <input type="text" class="form-control" value="1">
+          <span class="minus" style="border-radius: 0px 10px 10px 0px;">+</span>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Footer -->
+  <div class="offcanvas-footer">
+    <div class="add-to-card-button">
+      <span class="normal-price has-discount">Submit Bill</span>
+  </div>
+  </div>
+</div>
