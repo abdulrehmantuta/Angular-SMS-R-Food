@@ -1,16 +1,25 @@
 <div class="Grid-Info-section">
-    <nz-table #smallTable nzSize="small" [nzData]="data" [nzShowPagination]="false">
-        <thead>
-          <tr>
-            <th class="sub-text-th">Code</th>
-            <th class="sub-text-th">Date</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr *ngFor="let data of smallTable.data">
-            <td class="sub-text-th" style="color: rgba(25,135,84)">{{ data.code }}</td>
-            <td class="Font-Family">{{ data.data }}</td>
-          </tr>
-        </tbody>
-    </nz-table>
+  <!-- ✅ Search Input + Search Icon -->
+  <div class="search-container pr-4">
+      <input nz-input placeholder="Search Invoice Number" [(ngModel)]="searchQuery" (input)="filterSales()" />
+      <i nz-icon nzType="search" class="search-icon"></i>
+  </div>
+
+  <!-- ✅ Table -->
+  <nz-table class="p-2" #smallTable nzSize="small" [nzData]="filteredSales" [nzShowPagination]="false">
+      <thead>
+        <tr>
+          <th class="sub-text-th">Code</th>
+          <th class="sub-text-th">Date</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let data of filteredSales">
+          <td class="sub-text-th" style="color: rgba(25,135,84)" (click)="OrderEdit(data.id)">
+            {{ data.invoiceNumber }}
+          </td>
+          <td class="Font-Family">{{ data.saleDate | date:'medium' }}</td>
+        </tr>
+      </tbody>
+  </nz-table>
 </div>

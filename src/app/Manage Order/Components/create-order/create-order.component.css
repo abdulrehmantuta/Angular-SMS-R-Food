@@ -1,59 +1,67 @@
-.wrap-info {
-    display: flex;
-    justify-content: center;
+/* Container */
+/* Checkout Section Sticky */
+.checkout-section {
+  position: sticky;
+  top: 140px; /* Adjust as per navbar */
+  right: 15px;
+  width: 22%;
 }
-.wrap-info h2{
-    color: #333;
-    font-size: 20px;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+.container {
+  max-width: 1200px;
 }
-.price-wrapper {
-    display: flex;
-    justify-content: center;
-    color: #fff;
-    border-radius: 10px;
+
+/* Cards */
+.card {
+  border-radius: 10px;
+  transition: 0.3s ease-in-out;
 }
-.price-wrapper span{
-    background-color: red;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-    border-radius: 10px;
-    padding: 3px 20px 3px 20px;
+.card:hover {
+  transform: scale(1.05);
 }
-.cart-item-counter {
-    display: flex;
-    justify-content: space-around;
-    align-items: center;
+
+/* Card Image */
+.card-img-top {
+  height: 150px;
+  object-fit: cover;
 }
-.cart-item-counter .plus {
-    color: #ffff;
-    background-color: #fcc817;
-    padding: 10px;
-    border-radius: 10px 0px 0px 10px;
+
+/* Buttons */
+.btn {
+  border-radius: 5px;
 }
-.cart-item-counter .minus {
-    color: #ffff;
-    background-color: #fcc817;
-    padding: 10px;
-    border-radius: 0px 10px 10px 0px;
+.btn-light {
+  background-color: #fff !important;
+  color: #000 !important;
+  border: 1px solid #ddd;
 }
-.add-to-card-button {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+.btn-primary {
+  background-color: #007bff !important;
+  color: #fff !important;
 }
-.add-to-card-button span {
-    border-radius: 100rem;
-    padding: .3rem .5rem !important;
-    background: #fcc817;
-    border-color: #fcc817;
-    color: #fff;
-    width: 70%;
-    text-align: center;
-    margin-top: 15px;
-    font-size: 14px;
-    font-weight: 700;
-    font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
+
+/* Cart Section Fixed */
+.checkout-section {
+  position: fixed;
+  top: 140px; /* Adjust as per navbar */
+  right: 15px;
+  width: 35%;
+}
+
+/* Cart Content Scroll */
+.checkout-card {
+  height: 70vh;
+  display: flex;
+  flex-direction: column;
+}
+.cart-content {
+  flex-grow: 1;
+  overflow-y: auto;
+  max-height: 65vh;
+}
+
+/* Products Section Scroll */
+.product-section {
+  max-height: 70vh;
+  overflow-y: auto;
 }
