@@ -9,9 +9,11 @@ import en from '@angular/common/locales/en';
 import { FormsModule } from '@angular/forms';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { LayoutModule } from './layout/layout.module';
 import { SharedModule } from './shared/shared.module';
 import { OrderManagementModule } from './Manage Order/order-management.module';
+import { LoginComponent } from './main-layout/Components/login/login.component';
+import { MainDashboardComponent } from './main-layout/Components/main-dashboard/main-dashboard.component';
+import { MainLayoutModule } from './main-layout/main-layout.module';
 
 registerLocaleData(en);
 
@@ -26,7 +28,7 @@ registerLocaleData(en);
     HttpClientModule,
     BrowserAnimationsModule,
     OrderManagementModule,
-    LayoutModule,
+    MainLayoutModule,
     SharedModule,
   ],
   providers: [

@@ -1,7 +1,7 @@
 
 
 <div class="Grid-Info-section">
-    <nz-table #smallTable nzSize="small" [nzData]="data" [nzShowPagination]="false">
+    <nz-table #smallTable nzSize="small" [nzData]="ItemRes" [nzShowPagination]="false">
         <thead>
           <tr>
             <th class="sub-text-th">Item Name</th>
@@ -10,10 +10,10 @@
           </tr>
         </thead>
         <tbody>
-          <tr *ngFor="let data of smallTable.data">
+          <tr *ngFor="let data of ItemRes">
             <td class="sub-text-th" style="color: rgba(25,135,84)">{{ data.itemName }}</td>
             <td class="Font-Family">{{ data.itemRate }}</td>
-            <td class="Font-Family">{{ data.data }}</td>
+            <td class="Font-Family">{{ data.itemDate | date }}</td>
           </tr>
         </tbody>
     </nz-table>
