@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { SaleService } from '../../Services/sale.service';
 
 @Component({
   selector: 'app-main-dashboard',
@@ -8,6 +9,8 @@ import { Component, OnInit } from '@angular/core';
 export class MainDashboardComponent implements OnInit{
   Permission: boolean = false;
   
+  constructor(private _SaleService: SaleService){}
+
   ngOnInit(): void {
     const Permission = localStorage.getItem('Permission');
     if(Permission === "Full Admin"){
