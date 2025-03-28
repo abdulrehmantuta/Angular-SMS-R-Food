@@ -19,19 +19,20 @@ interface Items {
 export class CreateOrderComponent implements OnInit{
   quantityList: number[] = [];
   ItemRes: Item[] = [];
-  SaleForm!: FormGroup; 
+  SaleForm!: FormGroup;
   SaleRes!: Sale;
   cart: any[] = [];
   filteredItems: Item[] = [...this.ItemRes];
-  categories: string[] = ['All', 'Boti', "Puri Paratha Roll", "Chapati Roll", "Chinese Roll", 'Tikka', "Kabab"];
+  categories: string[] = ['All', 'Boti', "Puri Paratha Roll", "Chapati Roll", "Chinese Roll", 'Tikka', "Kabab", "Roti"];
   selectedCategory: string = 'All';
+  TotalAmountBill!: number;
 
   constructor(
     private _ItemService: ItemService,
     private fb: FormBuilder,
     private _SaleService: SaleService,
   ) {}
-    
+
   ngOnInit(): void {
     this.SaleFormGroup();
     this.onGet();
@@ -55,11 +56,11 @@ export class CreateOrderComponent implements OnInit{
       foodCenterName: sale.foodCenterName,
       foodCenterAddress: sale.foodCenterAddress
     });
-  
+
     // ✅ FormArray ko update karna zaroori hai
     const itemsArray = this.SaleForm.get('Items') as FormArray;
     itemsArray.clear(); // ✅ Purane items delete karein
-  
+
     sale.items.forEach((item: any) => {
       itemsArray.push(this.fb.group({
         id: item.id,
@@ -71,11 +72,11 @@ export class CreateOrderComponent implements OnInit{
       }));
     });
   }
-  
+
   SaleFormGroup() {
     this.SaleForm = this.fb.group({
       invoiceNumber: '',
-      id: null,
+      id: 0,
       saleDate: new Date(),
       foodCenterName: 'Bar B Q Food Center',
       foodCenterAddress: 'KORANGI NO: 1, SECTOR 32-B PLOTES-06 KARACHI. PHONE(S): 03160200002,',
@@ -97,7 +98,7 @@ export class CreateOrderComponent implements OnInit{
 
   filterItems(category: string) {
     this.selectedCategory = category;
-  
+
     if(category === "All"){
       this.filteredItems = this.ItemRes;
     } else {
@@ -106,7 +107,7 @@ export class CreateOrderComponent implements OnInit{
       });
     }
   }
-  
+
   getCategoryId(category: string): number | null {
     const categoryMap: { [key: string]: number } = {
       "Boti": 18,
@@ -123,7 +124,7 @@ export class CreateOrderComponent implements OnInit{
   increment(index: number) {
     this.quantityList[index]++;
   }
-  
+
   decrement(index: number) {
     if (this.quantityList[index] > 1) {
       this.quantityList[index]--;
@@ -131,12 +132,12 @@ export class CreateOrderComponent implements OnInit{
       this.clear(index);
     }
   }
-  
+
   clear(index: number) {
     this.cart.splice(index, 1);
     this.quantityList.splice(index, 1);
   }
-  
+
   addToCart(item: any) {
     const existingItemIndex = this.cart.findIndex(cartItem => cartItem.id === item.id);
     if (existingItemIndex !== -1) {
@@ -146,19 +147,24 @@ export class CreateOrderComponent implements OnInit{
       this.quantityList.push(1);
     }
   }
-  
+
   clearCart() {
     this.cart = [];
+    this.quantityList = [];
     localStorage.removeItem('SaleId');
   }
 
+  isSubmitting: boolean = false;
+
   onSubmitBill() {
+    this.isSubmitting = true;  // Enable loading spinner and disable button
+
     this.Items.clear();
-  
+
     this.cart.forEach((item, index) => {
       const quantity = this.quantityList[index];
       const amount = Number(item.itemRate || item.price) * quantity;
-  
+
       this.Items.push(this.fb.group({
         itemName: [item.itemName],
         price: [item.itemRate || item.price],
@@ -166,143 +172,92 @@ export class CreateOrderComponent implements OnInit{
         amount: [amount.toString()],
       }));
     });
+
     const SaleId = Number(localStorage.getItem('SaleId'));
-    if(SaleId){
+    if (SaleId) {
       this._SaleService.updatedSales(this.SaleForm.value, SaleId).subscribe(res => {
+        this.clearCart();
         localStorage.removeItem('SaleId');
         this.openReceiptWindow(res);
+        this.isSubmitting = false;  // Disable loading spinner and enable button
       });
     } else {
       this._SaleService.addSales(this.SaleForm.value).subscribe(res => {
+        this.clearCart();
         this.openReceiptWindow(res);
         localStorage.removeItem('SaleId');
+        this.isSubmitting = false;  // Disable loading spinner and enable button
       });
     }
   }
-  
+
   openReceiptWindow(SaleRes: Sale) {
+    let itemsHtml = "";
+    let totalAmount = 0;
+
+    SaleRes.items.forEach((item, index) => {
+      totalAmount += Number(item.amount);
+      itemsHtml += `
+        <tr>
+            <td>${index + 1}</td>
+            <td>${item.itemName}</td>
+            <td>${item.quantity}</td>
+            <td>${item.amount}</td>
+        </tr>`;
+    });
+
     const receiptHtml = `
       <html>
       <head>
           <title>Receipt</title>
           <style>
-              .receipt h2 {
-                  text-align: center;
-                  font-size: 30px;
-                  font-weight: 900;
-                  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-              }
-              .receipt span {
-                  text-align: center;
-                  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, PingFang SC, Hiragino Sans GB, Microsoft YaHei, Helvetica Neue, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji, Segoe UI Symbol;
-              }
-              .receipt table tr {
-                  border-top: 1px solid #000;
-                  border-bottom: 1px solid #000;
-                  font-size: 12px;
-              }
-              .receipt .first-row {
-                  border-top: 1px solid #000;
-                  font-size: 15px;
-              }
-              .receipt .second-row {
-                  border-bottom: 1px solid #000;
-                  font-size: 15px;
-              }
+              body { font-family: Arial, sans-serif; text-align: center; }
+              .receipt-container { width: 300px; margin: auto; border: 1px solid #000; padding: 10px; }
+              h2 { font-size: 20px; font-weight: bold; }
+              table { width: 100%; border-collapse: collapse; margin-top: 10px; }
+              th, td { border: 1px solid black; padding: 5px; text-align: left; }
+              .total { border-top: 2px solid black; font-weight: bold; }
+              .footer { font-size: 12px; margin-top: 10px; }
           </style>
       </head>
       <body>
-          <div class="row d-flex justify-content-start ms-4 receipt">
-              <div class="col-4" style="border: 1px solid #000;">
-                  <div>
-                      <h2>Rashid-Bar-B-Q</h2>
-                      <div class="d-flex justify-content-center">
-                          <span>KORANGI NO: 1, SECTOR 32-B,</span>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                          <span>PLOTES-06 KARACHI.</span>
-                      </div>
-                      <div class="d-flex justify-content-center">
-                          <span>PHONE(S): 03160200002, 03160200002.</span>
-                      </div>
-                      <div class="row first-row mt-3">
-                          <div class="col-12">
-                              <strong class="Font-Family">Invoice No:</strong>
-                              <strong class="ms-2 Font-Family">000001</strong>
-                          </div>
-                      </div>
-                      <div class="row second-row mb-3">
-                          <div class="col-12">
-                              <strong class="Font-Family">Date:</strong>
-                              <strong class="ms-2 Font-Family">Sunday, March 23, 2025 / 1 am</strong>
-                          </div>
-                      </div>
-                      <table style="width: 100%;">
-                          <tr>
-                              <th>Sr No</th>
-                              <th>Item</th>
-                              <th>Quantity</th>
-                              <th>Amount</th>
-                          </tr>
-                          <tr>
-                              <td>1</td>
-                              <td>chicken malai boti</td>
-                              <td>2</td>
-                              <td>250</td>
-                          </tr>
-                          <tr>
-                              <td>1</td>
-                              <td>chicken malai boti</td>
-                              <td>2</td>
-                              <td>250</td>
-                          </tr>
-                          <tr>
-                              <td>1</td>
-                              <td>chicken malai boti</td>
-                              <td>2</td>
-                              <td>250</td>
-                          </tr>
-                          <tr>
-                              <td>1</td>
-                              <td>chicken malai boti</td>
-                              <td>2</td>
-                              <td>250</td>
-                          </tr>
-                      </table>
-                      <div class="row mt-1">
-                          <div class="col-12 d-flex justify-content-end">
-                              <strong style="border-bottom: 2px solid #000;" class="Font-Family">Total</strong>
-                              <strong style="border-bottom: 2px solid #000;" class="ms-2 Font-Family">Rs :1300</strong>
-                          </div>
-                      </div>
-                      <div class="row first-row mt-1">
-                          <div class="col-12 d-flex justify-content-center"> 
-                              <strong class="Font-Family" style="font-size: 10px;">Thank You! Visit Again...</strong>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12 d-flex justify-content-center"> 
-                              <strong class="Font-Family" style="font-size: 10px;">A.R Tutal: Digital POS Management MasterSoft</strong>
-                          </div>
-                      </div>
-                      <div class="row">
-                          <div class="col-12 d-flex justify-content-center"> 
-                              <strong class="Font-Family" style="font-size: 10px;">Phone: 03151030772</strong>
-                          </div>
-                      </div>
-                  </div>
-              </div>
+          <div class="receipt-container">
+              <h2>Rashid-Bar-B-Q</h2>
+              <p>KORANGI NO: 1, SECTOR 32-B, PLOTES-06 KARACHI.</p>
+              <p>PHONE(S): 03160200002, 03160200002</p>
+
+              <p><strong>Order No:</strong> ${SaleRes.invoiceNumber}</p>
+              <p><strong>Date:</strong> ${new Date().toLocaleString()}</p>
+
+              <table>
+                  <tr>
+                      <th>Sr No</th>
+                      <th>Item</th>
+                      <th>Qty</th>
+                      <th>Amount</th>
+                  </tr>
+                  ${itemsHtml}
+                  <tr class="total">
+                      <td colspan="3">Total</td>
+                      <td>Rs: ${this.TotalAmountBill}</td>
+                  </tr>
+              </table>
+
+              <p class="footer">Thank You! Visit Again...</p>
+              <p class="footer">A.R Tutal: Digital POS Management MasterSoft</p>
+              <p class="footer">Phone: 03151030772</p>
           </div>
+
           <script>
               window.onload = function() {
                   window.print();
                   setTimeout(() => window.close(), 1000);
-              }
+              };
           </script>
       </body>
       </html>
     `;
-  
+
     const receiptWindow = window.open('', '_blank', 'width=400,height=600');
     if (receiptWindow) {
       receiptWindow.document.open();
@@ -313,7 +268,8 @@ export class CreateOrderComponent implements OnInit{
 
   getTotalAmount(): number {
     return this.cart.reduce((total, item, index) => {
-      return total + (Number(item.itemRate || item.price) * this.quantityList[index]);
+      this.TotalAmountBill = total + (Number(item.itemRate || item.price) * this.quantityList[index]);
+      return this.TotalAmountBill;
     }, 0);
   }
 }
