@@ -1,27 +1,43 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
+import { Sale } from 'src/app/Item/interface/item';
+import { SaleService } from 'src/app/main-layout/Services/sale.service';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-list-order',
   templateUrl: './list-order.component.html',
   styleUrls: ['./list-order.component.css']
 })
-export class ListOrderComponent {
-  data = [
-    {
-      code: '000001',
-      data: '30-03-2024',
-    },
-    {
-      code: '000002',
-      data: '30-03-2024',
-    },
-    {
-      code: '000003',
-      data: '30-03-2024',
-    },
-    {
-      code: '000004',
-      data: '30-03-2024',
-    },
-  ];
+export class ListOrderComponent implements OnInit {
+  SaleRes: Sale[] = [];
+  filteredSales: Sale[] = [];
+  searchQuery: string = '';
+
+  constructor(
+    private _SaleService: SaleService,
+    private _Router: Router,
+  ) {}
+
+  ngOnInit(): void {
+    this.onGet();
+  }
+
+  onGet() {
+    this._SaleService.getSales().subscribe(res => {
+      this.SaleRes = res;
+      this.filteredSales = res; // ✅ Default me poora data dikhao
+    });
+  }
+
+  filterSales() {
+    this.filteredSales = this.SaleRes.filter(sale =>
+      sale.invoiceNumber.toLowerCase().includes(this.searchQuery.toLowerCase())
+    );
+  }
+
+  OrderEdit(Id: number) {
+    this._Router.navigate(['/Order-Created']);
+    localStorage.setItem('SaleId', Id.toString());
+  }
 }

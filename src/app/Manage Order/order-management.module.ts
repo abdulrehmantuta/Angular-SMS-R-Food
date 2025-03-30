@@ -5,6 +5,9 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedModule } from '../shared/shared.module';
 import { OrderManagementRoutingModule } from './order-management-routing.module';
 import { ListOrderComponent } from './Components/list-order/list-order.component';
+import { NzButtonModule } from 'ng-zorro-antd/button';
+import { BrowserModule } from '@angular/platform-browser';
+import { NzSpinModule } from 'ng-zorro-antd/spin';
 
 
 
@@ -18,7 +21,11 @@ import { ListOrderComponent } from './Components/list-order/list-order.component
     OrderManagementRoutingModule,
     SharedModule,
     ReactiveFormsModule,
-    FormsModule
+    FormsModule,
+    BrowserModule,
+    BrowserModule,
+    NzButtonModule,   // Import NzButtonModule
+    NzSpinModule,   // Import NzButtonModule
   ]
 })
 export class OrderManagementModule { }

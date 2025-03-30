@@ -108,3 +108,23 @@
     color: #002f77;
    }
   }
+  .search-container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.search-container input {
+    width: 200px;
+    padding: 5px 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    outline: none;
+}
+
+.search-icon {
+    margin-left: -25px;
+    cursor: pointer;
+    color: #888;
+}
