@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormArray, FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
+import { NzMessageService } from 'ng-zorro-antd/message';
 import { Item, Sale } from 'src/app/Item/interface/item';
 import { ItemService } from 'src/app/Item/Servicres/item.service';
 import { SaleService } from 'src/app/main-layout/Services/sale.service';
@@ -25,12 +26,12 @@ export class CreateOrderComponent implements OnInit{
   filteredItems: Item[] = [...this.ItemRes];
   categories: string[] = ['All', 'Boti', "Puri Paratha Roll", "Chapati Roll", "Chinese Roll", 'Tikka', "Kabab", "Roti"];
   selectedCategory: string = 'All';
-  TotalAmountBill!: number;
 
   constructor(
     private _ItemService: ItemService,
     private fb: FormBuilder,
     private _SaleService: SaleService,
+    private _NzMessageService: NzMessageService,
   ) {}
 
   ngOnInit(): void {
@@ -154,11 +155,7 @@ export class CreateOrderComponent implements OnInit{
     localStorage.removeItem('SaleId');
   }
 
-  isSubmitting: boolean = false;
-
   onSubmitBill() {
-    this.isSubmitting = true;  // Enable loading spinner and disable button
-
     this.Items.clear();
 
     this.cart.forEach((item, index) => {
@@ -172,21 +169,20 @@ export class CreateOrderComponent implements OnInit{
         amount: [amount.toString()],
       }));
     });
-
     const SaleId = Number(localStorage.getItem('SaleId'));
-    if (SaleId) {
+    if(SaleId){
       this._SaleService.updatedSales(this.SaleForm.value, SaleId).subscribe(res => {
         this.clearCart();
         localStorage.removeItem('SaleId');
         this.openReceiptWindow(res);
-        this.isSubmitting = false;  // Disable loading spinner and enable button
       });
     } else {
       this._SaleService.addSales(this.SaleForm.value).subscribe(res => {
         this.clearCart();
         this.openReceiptWindow(res);
         localStorage.removeItem('SaleId');
-        this.isSubmitting = false;  // Disable loading spinner and enable button
+      }, error => {
+        this._NzMessageService.error('Error creating bill!');
       });
     }
   }
@@ -202,7 +198,7 @@ export class CreateOrderComponent implements OnInit{
             <td>${index + 1}</td>
             <td>${item.itemName}</td>
             <td>${item.quantity}</td>
-            <td>${item.amount}</td>
+            <td>${item.price}</td>
         </tr>`;
     });
 
@@ -239,19 +235,22 @@ export class CreateOrderComponent implements OnInit{
                   ${itemsHtml}
                   <tr class="total">
                       <td colspan="3">Total</td>
-                      <td>Rs: ${this.TotalAmountBill}</td>
+                      <td>Rs: ${totalAmount}</td>
                   </tr>
               </table>
 
               <p class="footer">Thank You! Visit Again...</p>
-              <p class="footer">A.R Tutal: Digital POS Management MasterSoft</p>
-              <p class="footer">Phone: 03151030772</p>
+              <p class="footer">Digital POS Management MasterSoft</p>
+              <p class="footer">Created By A.R Tutal & Waqas Tutal</p>
+              <p class="footer">Phone: 03151030772 & 03171187180</p>
           </div>
 
           <script>
               window.onload = function() {
-                  window.print();
-                  setTimeout(() => window.close(), 1000);
+                  setTimeout(() => {
+                      window.print();
+                      setTimeout(() => window.close(), 500);
+                  }, 500);
               };
           </script>
       </body>
@@ -263,13 +262,29 @@ export class CreateOrderComponent implements OnInit{
       receiptWindow.document.open();
       receiptWindow.document.write(receiptHtml);
       receiptWindow.document.close();
+      this._NzMessageService.success('Bill Created Successfully!');
     }
   }
 
+
+
+  TotalAmountBill!: number;
   getTotalAmount(): number {
     return this.cart.reduce((total, item, index) => {
       this.TotalAmountBill = total + (Number(item.itemRate || item.price) * this.quantityList[index]);
       return this.TotalAmountBill;
     }, 0);
+  }
+
+  downloadSalesData() {
+    this._SaleService.getSales().subscribe(res => {
+      const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(res));
+      const downloadAnchor = document.createElement('a');
+      downloadAnchor.setAttribute("href", dataStr);
+      downloadAnchor.setAttribute("download", "SalesData.json");
+      document.body.appendChild(downloadAnchor);
+      downloadAnchor.click();
+      document.body.removeChild(downloadAnchor);
+    });
   }
 }
